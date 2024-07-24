@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(House))]
 
 public class Signalization : MonoBehaviour
 {
@@ -9,17 +10,31 @@ public class Signalization : MonoBehaviour
     [SerializeField] private float _volume;
 
     private AudioSource _audioSource;
+    private House _house;
 
     private float _volumeChangeRate = 0.1f;
     private float _volumeChangeInterval = 1f;
-    private bool _isIncreasingVolume;
-    private bool _isDecreasingVolume;
+    private bool _isIncreasingVolume = false;
+    private bool _isDecreasingVolume = false;
 
-    private void Start()
-    {
+    private void Awake()
+    {       
+        _house = GetComponent<House>();
         _audioSource = gameObject.AddComponent<AudioSource>();
         _audioSource.clip = _audioClip;
         _audioSource.volume = _volume;
+    }
+
+    private void OnEnable()
+    {
+        _house.HouseEntryDetected += IncreaseVolume;
+        _house.HouseExitDetected += DecreaseVolume;
+    }
+
+    private void OnDisable()
+    {
+        _house.HouseEntryDetected -= IncreaseVolume;
+        _house.HouseExitDetected -= DecreaseVolume;
     }
 
     private void Update()
@@ -30,22 +45,19 @@ public class Signalization : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void IncreaseVolume()
     {
-        if (other.gameObject.TryGetComponent<Player>(out Player _))
+        if (_isIncreasingVolume != true)
         {
-            if (_isIncreasingVolume != true)
-            {
-                StopCoroutine(GradualDecreaseVolume());
-                _isDecreasingVolume = false;
+            StopCoroutine(GradualDecreaseVolume());
+            _isDecreasingVolume = false;
 
-                StartCoroutine(GradualIncreaseVolume());
-                _audioSource.Play();
-            }            
+            StartCoroutine(GradualIncreaseVolume());
+            _audioSource.Play();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void DecreaseVolume()
     {
         if (_isDecreasingVolume != true)
         {
@@ -53,13 +65,13 @@ public class Signalization : MonoBehaviour
             _isIncreasingVolume = false;
 
             StartCoroutine(GradualDecreaseVolume());
-        }      
+        }
     }
 
     private IEnumerator GradualIncreaseVolume()
     {
         float maxVolume = 1;
-        _isIncreasingVolume = true; 
+        _isIncreasingVolume = true;
 
         WaitForSeconds waitForSeconds = new WaitForSeconds(_volumeChangeInterval);
 
