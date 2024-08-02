@@ -122,72 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &624356604
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 624356607}
-  - component: {fileID: 624356606}
-  - component: {fileID: 624356605}
-  m_Layer: 0
-  m_Name: House
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &624356605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624356604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e453788eeaa8084096b3ae0b6786620, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!65 &624356606
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624356604}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 7.412519, y: 0.47811055, z: 1.9349761}
-  m_Center: {x: 0.30171514, y: -0.26094472, z: 0.46748805}
---- !u!4 &624356607
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624356604}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.05, y: 0.67, z: 4.04}
-  m_LocalScale: {x: 1.0797, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &770729565
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,9 +132,9 @@ GameObject:
   m_Component:
   - component: {fileID: 770729567}
   - component: {fileID: 770729566}
-  - component: {fileID: 770729568}
-  - component: {fileID: 770729571}
   - component: {fileID: 770729572}
+  - component: {fileID: 770729574}
+  - component: {fileID: 770729575}
   m_Layer: 0
   m_Name: Signalization
   m_TagString: Untagged
@@ -223,12 +157,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.54022884, y: 0.5416218, z: 0.5494461}
-  m_Center: {x: 1.4211962, y: -0.6089638, z: -0.42671013}
+  m_Size: {x: 5.5389295, y: 0.47530997, z: 2.362117}
+  m_Center: {x: 0.56613994, y: -0.6421197, z: -0.41569126}
 --- !u!4 &770729567
 Transform:
   m_ObjectHideFlags: 0
@@ -238,13 +172,13 @@ Transform:
   m_GameObject: {fileID: 770729565}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6400003, y: 3.45, z: 5.54}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.74, y: 1.21, z: 0.6}
+  m_LocalScale: {x: 1.5477, y: 1, z: 6.2985}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &770729568
+--- !u!114 &770729572
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -253,12 +187,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 770729565}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5b80ae458438594c907670e0c2c8a17, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e453788eeaa8084096b3ae0b6786620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: dac756f8060c6664faeb6b19de23f3c2, type: 3}
-  _volume: 0.1
---- !u!82 &770729571
+--- !u!82 &770729574
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -269,7 +201,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -354,7 +286,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &770729572
+--- !u!114 &770729575
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -363,9 +295,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 770729565}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e453788eeaa8084096b3ae0b6786620, type: 3}
+  m_Script: {fileID: 11500000, guid: c5b80ae458438594c907670e0c2c8a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioClip: {fileID: 8300000, guid: dac756f8060c6664faeb6b19de23f3c2, type: 3}
+  _volume: 0
 --- !u!1001 &1063491186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -374,6 +308,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 175876, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 451208, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -994,5 +932,4 @@ SceneRoots:
   - {fileID: 1063491186}
   - {fileID: 1530988923}
   - {fileID: 1449977044}
-  - {fileID: 624356607}
   - {fileID: 770729567}

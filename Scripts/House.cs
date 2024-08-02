@@ -11,7 +11,6 @@ public class House : MonoBehaviour
         if (other.gameObject.TryGetComponent<Player>(out Player _))
         {
             HouseEntryDetected?.Invoke();
-
         }
     }
 
