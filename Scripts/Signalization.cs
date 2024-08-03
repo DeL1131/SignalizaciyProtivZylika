@@ -10,17 +10,18 @@ public class Signalization : MonoBehaviour
     [SerializeField] private float _volume;
 
     private AudioSource _audioSource;
+    private Coroutine _currentCoroutine;
     private House _house;
 
     private float _volumeChangeRate = 0.1f;
     private float _volumeChangeInterval = 1f;
-    private bool _isIncreasingVolume = false;
-    private float _targetVolume;
+    private float _increaseTargetVolume = 1f;
+    private float _decreaseTargetVolume = 0f;
 
     private void Awake()
     {
         _house = GetComponent<House>();
-        _audioSource = gameObject.AddComponent<AudioSource>();
+        _audioSource = gameObject.GetComponent<AudioSource>();
         _audioSource.clip = _audioClip;
         _audioSource.volume = _volume;
     }
@@ -37,44 +38,34 @@ public class Signalization : MonoBehaviour
         _house.HouseExitDetected -= DecreaseVolume;
     }
 
-    private void Update()
-    {
-        if (_audioSource.volume == 0)
-        {
-            _audioSource.Stop();
-            _isIncreasingVolume = false;
-            StopCoroutine(ChangeVolume());
-        }
-    }
-
     private void IncreaseVolume()
     {
-        if (_isIncreasingVolume != true)
+        if (_currentCoroutine != null)
         {
-            _targetVolume = 1f;
-            StartCoroutine(ChangeVolume());
-            _audioSource.Play();
+            StopCoroutine(_currentCoroutine);
         }
-        else
-        {
-            _targetVolume = 1f;
-        }
+
+        _audioSource.Play();
+        _currentCoroutine = StartCoroutine(ChangeVolume(_increaseTargetVolume));
     }
 
     private void DecreaseVolume()
     {
-        _targetVolume = 0f;
+        if (_currentCoroutine != null)
+        {
+            StopCoroutine(_currentCoroutine);
+        }
+
+        _currentCoroutine = StartCoroutine(ChangeVolume(_decreaseTargetVolume));
     }
 
-    private IEnumerator ChangeVolume()
+    private IEnumerator ChangeVolume(float targetVolume)
     {
-        _isIncreasingVolume = true;
-
         WaitForSeconds waitForSeconds = new WaitForSeconds(_volumeChangeInterval);
 
-        while (_isIncreasingVolume)
+        while (_volume != targetVolume)
         {
-            _volume = Mathf.MoveTowards(_volume, _targetVolume, _volumeChangeRate);
+            _volume = Mathf.MoveTowards(_volume, targetVolume, _volumeChangeRate);
             _audioSource.volume = _volume;
             yield return waitForSeconds;
         }
